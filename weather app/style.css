@@ -1,0 +1,165 @@
+@import url('https://fonts.googleapis.com/css2?family=Bitter:wght@300;400;700&display=swap');
+
+* {
+    box-sizing: border-box;
+    color: #ffffff;
+}
+
+body {
+    font-family: 'Bitter', sans-serif;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    overflow: hidden;
+    background-color: lightgrey;
+}
+
+.container {
+    background: url(img/daybackground.gif) #006fad;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-blend-mode: overlay;
+    padding: 30px;
+    border-radius: 10px;
+}
+
+.weather-box {
+    width: 70vw;
+    max-width: 600px;
+    height: 500px;
+    
+}
+
+.nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.logo {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+}
+
+.logo img {
+    width: 80px;
+    background: #ffff;
+    padding: 5px 5px;
+    border-radius: 3px;
+}
+
+.search-box{
+    display: flex;
+}
+
+.search-box input {
+    border: none;
+    background: transparent;
+    border-bottom: 1px solid #ffff;
+    color: #ffff;
+    height: 30px;
+    width: 100px;
+}
+
+.search-box input:focus {
+    outline: none;
+}
+
+.search-box button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    /* left: 170px; */
+
+}
+
+.search-box button:focus {
+    border: none;
+    outline: none;
+}
+
+.search-box button:active {
+    transform: scale(0.9);
+}
+
+.search-box input::placeholder {
+    color: #ffff;
+    font-size: 12px;
+}
+
+.search-box button i {
+    font-size: 20px;
+}
+
+.location-box {
+    display: flex;
+    flex-direction: row;
+}
+
+.location {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.location > * {
+    padding: 0 5px;
+}
+
+.temp {
+    display: grid;
+    grid-template-columns: 1fr 1fr; 
+    grid-template-rows: 180px 180px;  
+    gap: 5px; 
+    grid-template-areas: 
+}
+
+.temp > * {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+}
+
+ .temp-description {
+    align-items: baseline;
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+
+.figure .temp-figure, .unit {
+    font-size: 50px;
+    font-weight: 400;
+}
+
+.temp-icon {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
+
+.temp-icon i {
+    font-size: 46px;
+}
+
+.desc {
+    font-size: 22px;
+}
+
+footer p {
+    font-size: 12px;
+    font-style: italic;
+    text-align: center;
+    letter-spacing: 2px;
+}
