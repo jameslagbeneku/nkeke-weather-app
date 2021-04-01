@@ -47,11 +47,13 @@ let weather = function () {
     tempIcon.src = `http://openweathermap.org/img/wn/${icon}@2x.png`;
     
     if (countryCode !== "US") {
-      temp = (weatherData.main.temp - 273.15);
+      temp = weatherData.main.temp - 273.15;
+      tempFigure.innerHTML = Math.ceil(temp)
       unit.innerHTML = "°C"
+      console.log(temp)
     } else {
       temp = (weatherData.main.temp - 273.15) * 9/5 + 32;
-      unit.innerHTML = "°F"
+      unit.innerHTML = "°F";
     }
   });
 }

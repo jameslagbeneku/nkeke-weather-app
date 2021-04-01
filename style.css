@@ -136,9 +136,16 @@ body {
     grid-column-end: 3;
 }
 
-.figure .temp-figure, .unit {
+.figure .temp-figure {
     font-size: 50px;
     font-weight: 400;
+}
+
+.unit {
+    font-size: 30px;
+    font-weight: 400;
+    vertical-align: super;
+    
 }
 
 .temp-icon {
