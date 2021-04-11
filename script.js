@@ -37,7 +37,7 @@ var h = d.getHours()
 var y = d.getFullYear()
 footerYear.innerHTML = y
  
-  if (h < 18) {
+  if (h > 0 && h < 18 ) {
     container.style.background = `url('img/daybackground.gif') #006fad`;
     container.style.backgroundSize = `cover`;
     container.style.backgroundRepeat = `no-repeat`
