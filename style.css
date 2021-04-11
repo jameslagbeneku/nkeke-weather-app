@@ -257,6 +257,10 @@ body {
     text-align: start;
 }
 
+.min-temp {
+    margin-left: 30px;
+}
+
 .next-7-box img {
     width: 40px;
 }
