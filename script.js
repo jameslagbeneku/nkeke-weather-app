@@ -37,7 +37,7 @@ var h = d.getHours()
 var y = d.getFullYear()
 footerYear.innerHTML = y
  
-  if (h > 0 && h < 18 ) {
+  if (h > 5 && h < 18 ) {
     container.style.background = `url('img/daybackground.gif') #006fad`;
     container.style.backgroundSize = `cover`;
     container.style.backgroundRepeat = `no-repeat`
@@ -56,7 +56,7 @@ footerYear.innerHTML = y
       fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${weatherAPIKey}`)
       .then(response => response.json())
       .then(newWeatherData => {
-        temp = (newWeatherData.main.temp - 273.15) * 9/5 + 32;
+        temp = (newWeatherData.main.temp - 273.15) * 9/5 + 32 ;
         tempType = newWeatherData.weather[0].main;
         tempDesc = newWeatherData.weather[0].description;
         icon = newWeatherData.weather[0].icon;
@@ -68,6 +68,11 @@ footerYear.innerHTML = y
         weatherType.innerHTML = tempType;
         weatherDesc.innerHTML = tempDesc;
         tempIcon.src = `https://openweathermap.org/img/wn/${icon}@2x.png`;
+
+        if (countryCode !== "US") {
+          temp = Math.ceil((newWeatherData.main.temp - 273.15));
+          unit.innerHTML = "°C"
+        }
       
       });
     }
@@ -76,12 +81,14 @@ footerYear.innerHTML = y
       fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&exclude=minutely,alerts&appid=${weatherAPIKey}`)
       .then(response => response.json())
       .then(twentyFourHourWeather => {
+         
         
         const weatherArray = Object.entries(twentyFourHourWeather.hourly)
         weatherArray.splice(25, 24)
         weatherArray.shift()
   
         nextTemp.innerHTML = Math.ceil(((weatherArray[0][1].temp) - 273.15) * 9/5 + 32);
+        console.log(nextTemp.innerHTML)
         nextType.innerHTML = weatherArray[0][1].weather[0].main;
         newIcon = weatherArray[0][1].weather[0].icon;
         nextIcon.src = `https://openweathermap.org/img/wn/${newIcon}.png`;
@@ -129,10 +136,9 @@ footerYear.innerHTML = y
           `
           if (countryCode !== "US") {
                     nextTemp.innerHTML = Math.ceil(((weatherArray[index][1].temp) - 273.15));
-                    unit.innerHTML = "°C"
+                    nextUnit.innerHTML = "°C"
                   }
         }
-      
       });
     }
 
