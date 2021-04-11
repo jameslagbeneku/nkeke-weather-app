@@ -56,6 +56,9 @@ footerYear.innerHTML = y
       fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${weatherAPIKey}`)
       .then(response => response.json())
       .then(newWeatherData => {
+
+        console.log(newWeatherData)
+        console.log(newWeatherData.main.temp)
         temp = (newWeatherData.main.temp - 273.15) * 9/5 + 32 ;
         tempType = newWeatherData.weather[0].main;
         tempDesc = newWeatherData.weather[0].description;
@@ -71,7 +74,9 @@ footerYear.innerHTML = y
 
         if (countryCode !== "US") {
           temp = Math.ceil((newWeatherData.main.temp - 273.15));
+          tempFigure.innerHTML = temp;
           unit.innerHTML = "°C"
+          console.log(temp)
         }
       
       });
@@ -88,7 +93,7 @@ footerYear.innerHTML = y
         weatherArray.shift()
   
         nextTemp.innerHTML = Math.ceil(((weatherArray[0][1].temp) - 273.15) * 9/5 + 32);
-        console.log(nextTemp.innerHTML)
+        // console.log(nextTemp.innerHTML)
         nextType.innerHTML = weatherArray[0][1].weather[0].main;
         newIcon = weatherArray[0][1].weather[0].icon;
         nextIcon.src = `https://openweathermap.org/img/wn/${newIcon}.png`;
@@ -134,10 +139,15 @@ footerYear.innerHTML = y
           <img class="next-48hr-weather-icon" src="${nextIcon.src}" alt="">
           <p class="next-48hr-weather-type">${nextType.innerHTML}</p>
           `
-          if (countryCode !== "US") {
-                    nextTemp.innerHTML = Math.ceil(((weatherArray[index][1].temp) - 273.15));
-                    nextUnit.innerHTML = "°C"
-                  }
+         
+
+          
+        if (countryCode !== "US") {
+          temp =  Math.ceil(((weatherArray[0][1].temp) - 273.15));
+          nextTemp.innerHTML = temp;
+          nextUnit.innerHTML = "°C"
+          console.log(nextUnit.innerHTML)
+        }
         }
       });
     }
@@ -162,7 +172,7 @@ footerYear.innerHTML = y
           nextMinTemp.innerHTML = Math.ceil(((sevenDayArray[index][1].temp.min) - 273.15) * 9/5 + 32);
           nextMaxTemp.innerHTML = Math.ceil(((sevenDayArray[index][1].temp.max) - 273.15) * 9/5 + 32);
           newIcon = sevenDayArray[index][1].weather[0].icon;
-          nextDayIcon.src = `https://openweathermap.org/img/wn/${newIcon}.png`;;
+          nextDayIcon.src = `https://openweathermap.org/img/wn/${newIcon}.png`;
           const newDay = document.createElement("div");
           sevenDayForecast.appendChild(newDay);
           newDay.classList.add("next-7-box")
@@ -173,8 +183,9 @@ footerYear.innerHTML = y
           <img class="next-seven-icon" src="${nextDayIcon.src}" alt="">
           `
           if (countryCode !== "US") {
-                    nextMinTemp.innerHTML = Math.ceil(((weatherArray[index][1].temp) - 273.15));
-                    nextMaxTemp.innerHTML = Math.ceil(((weatherArray[index][1].temp) - 273.15));
+                    nextMinTemp.innerHTML = Math.ceil(((sevenDayArray[index][1].temp.min) - 273.15));
+                    nextMaxTemp.innerHTML = Math.ceil(((sevenDayArray[index][1].temp.max) - 273.15));
+
                   }
         }
       
