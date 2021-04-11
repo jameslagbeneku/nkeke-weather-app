@@ -4,6 +4,7 @@
     box-sizing: border-box;
     color: #ffffff;
     margin: 0;
+    font-size: 22px;
 }
 
 body {
@@ -14,7 +15,7 @@ body {
     align-items: center;
     justify-content: center;
     height: 100vh;
-    overflow-x: hidden;
+    overflow: hidden;
     background-color: lightgrey;
 }
 
@@ -184,6 +185,7 @@ body {
 .forecast-heading {
     text-align: center;
     margin-bottom: 10px;
+    font-size: 22px;
     font-weight: 550;
 }
 
@@ -246,14 +248,15 @@ body {
 
 .next-7-box > *  {
     width: 20vw;
-    max-width: 100px;
+    max-width: 150px;
+    
 }
 
 .next-7-box img {
     width: 40px;
 }
 
-footer p {
+footer p, .year {
     font-size: 12px;
     font-style: italic;
     text-align: center;
@@ -261,3 +264,4 @@ footer p {
     bottom: 20px;
     align-content: center;
 }
+
