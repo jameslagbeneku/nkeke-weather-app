@@ -238,7 +238,8 @@ body {
     text-align: center;
     align-items: center;
     height: 30px;
-    padding: 0;
+    padding: 0 10px;
+    min-width: 300px;
 }
 
 .next-7-box:first-of-type {
@@ -248,8 +249,12 @@ body {
 
 .next-7-box > *  {
     width: 20vw;
-    max-width: 150px;
-    
+    max-width: 200px;
+    font-size: 18px;
+}
+
+.day {
+    text-align: start;
 }
 
 .next-7-box img {
