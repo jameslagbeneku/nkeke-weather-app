@@ -67,7 +67,7 @@ footerYear.innerHTML = y
         tempFigure.innerHTML = Math.ceil(temp);
         weatherType.innerHTML = tempType;
         weatherDesc.innerHTML = tempDesc;
-        tempIcon.src = `http://openweathermap.org/img/wn/${icon}@2x.png`;
+        tempIcon.src = `https://openweathermap.org/img/wn/${icon}@2x.png`;
       
       });
     }
@@ -84,7 +84,7 @@ footerYear.innerHTML = y
         nextTemp.innerHTML = Math.ceil(((weatherArray[0][1].temp) - 273.15) * 9/5 + 32);
         nextType.innerHTML = weatherArray[0][1].weather[0].main;
         newIcon = weatherArray[0][1].weather[0].icon;
-        nextIcon.src = `http://openweathermap.org/img/wn/${newIcon}.png`;
+        nextIcon.src = `https://openweathermap.org/img/wn/${newIcon}.png`;
   
         weatherArray.forEach(output);
   
@@ -112,7 +112,7 @@ footerYear.innerHTML = y
           nextTemp.innerHTML = Math.ceil(((weatherArray[index][1].temp) - 273.15) * 9/5 + 32);
           nextType.innerHTML = weatherArray[index][1].weather[0].main;
           newIcon = weatherArray[index][1].weather[0].icon;
-          nextIcon.src = `http://openweathermap.org/img/wn/${newIcon}.png`;
+          nextIcon.src = `https://openweathermap.org/img/wn/${newIcon}.png`;
           const newForecast = document.createElement("div");
           forecast.appendChild(newForecast);
           newForecast.classList.add("next-48-box")
@@ -143,7 +143,7 @@ footerYear.innerHTML = y
         
         const sevenDayArray = Object.entries(sevenDayWeather.daily)
         sevenDayArray.shift()
-        nextDayIcon.src = `http://openweathermap.org/img/wn/${newIcon}.png`;
+        nextDayIcon.src = `https://openweathermap.org/img/wn/${newIcon}.png`;
   
         sevenDayArray.forEach(output);
   
@@ -156,7 +156,7 @@ footerYear.innerHTML = y
           nextMinTemp.innerHTML = Math.ceil(((sevenDayArray[index][1].temp.min) - 273.15) * 9/5 + 32);
           nextMaxTemp.innerHTML = Math.ceil(((sevenDayArray[index][1].temp.max) - 273.15) * 9/5 + 32);
           newIcon = sevenDayArray[index][1].weather[0].icon;
-          nextDayIcon.src = `http://openweathermap.org/img/wn/${newIcon}.png`;;
+          nextDayIcon.src = `https://openweathermap.org/img/wn/${newIcon}.png`;;
           const newDay = document.createElement("div");
           sevenDayForecast.appendChild(newDay);
           newDay.classList.add("next-7-box")
