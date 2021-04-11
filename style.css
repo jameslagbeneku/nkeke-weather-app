@@ -15,7 +15,7 @@ body {
     align-items: center;
     justify-content: center;
     height: 100vh;
-    overflow: hidden;
+    overflow-x: hidden;
     background-color: lightgrey;
 }
 
@@ -33,7 +33,7 @@ body {
     width: 90vw;
     max-width: 600px;
     height: 95vh;
-    overflow-y:scroll;
+    overflow-y: scroll;
 }
 
 .weather-box::-webkit-scrollbar {
