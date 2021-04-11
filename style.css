@@ -3,6 +3,7 @@
 * {
     box-sizing: border-box;
     color: #ffffff;
+    margin: 0;
 }
 
 body {
@@ -13,7 +14,7 @@ body {
     align-items: center;
     justify-content: center;
     height: 100vh;
-    overflow: hidden;
+    overflow-x: hidden;
     background-color: lightgrey;
 }
 
@@ -23,15 +24,19 @@ body {
     background-size: cover;
     background-position: center;
     background-blend-mode: overlay;
-    padding: 30px;
+    padding: 10px;
     border-radius: 10px;
 }
 
 .weather-box {
-    width: 70vw;
+    width: 90vw;
     max-width: 600px;
-    height: 500px;
-    
+    height: 95vh;
+    overflow-y:scroll;
+}
+
+.weather-box::-webkit-scrollbar {
+    display: none;
 }
 
 .nav {
@@ -80,27 +85,11 @@ body {
 
 }
 
-.search-box button:focus {
-    border: none;
-    outline: none;
-}
-
-.search-box button:active {
-    transform: scale(0.9);
-}
-
-.search-box input::placeholder {
-    color: #ffff;
-    font-size: 12px;
-}
-
-.search-box button i {
-    font-size: 20px;
-}
 
 .location-box {
     display: flex;
     flex-direction: row;
+    margin-bottom: 20px;
 }
 
 .location {
@@ -115,12 +104,20 @@ body {
     padding: 0 5px;
 }
 
+.weather-info {
+    /* margin-bottom: 30px;  */
+}
+
 .temp {
     display: grid;
     grid-template-columns: 1fr 1fr; 
-    grid-template-rows: 180px 180px;  
+    grid-template-rows: 80px 50px;  
     gap: 5px; 
-    grid-template-areas: 
+    
+}
+
+.figure, .temp-icon {
+    margin-bottom: 30px;
 }
 
 .temp > * {
@@ -164,9 +161,103 @@ body {
     font-size: 22px;
 }
 
+.next-48hrs .forecast {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    margin: 0;
+    padding: 0;
+    overflow-x: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    margin-bottom: 20px;
+}
+.forecast::-webkit-scrollbar {
+    display: none;
+}
+ 
+.next-48-box:first-of-type {
+    display: none;
+}
+
+.forecast-heading {
+    text-align: center;
+    margin-bottom: 10px;
+    font-weight: 550;
+}
+
+
+.next-48 {
+    display: flex;
+    flex-direction: row;
+}
+
+ .next-48-box {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    min-width: 70px;
+}
+
+
+.time {
+    display: flex;
+    padding-bottom: 10px;
+    width: auto;
+}
+
+
+
+.next-48hr-temp, .next-48hr-unit {
+    margin: 0;
+}
+
+.next-48-icon {
+    display: flex;
+    flex-direction: column;
+}
+
+.next-48hr-weather-type {
+    font-size: 12px;
+    text-align: center;
+}
+
+.next-7days {
+    margin-bottom: 20px;
+}
+
+.next-7-box {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-content: center;
+    text-align: center;
+    align-items: center;
+    height: 30px;
+    padding: 0;
+}
+
+.next-7-box:first-of-type {
+    display: none;
+}
+
+
+.next-7-box > *  {
+    width: 20vw;
+    max-width: 100px;
+}
+
+.next-7-box img {
+    width: 40px;
+}
+
 footer p {
     font-size: 12px;
     font-style: italic;
     text-align: center;
     letter-spacing: 2px;
+    bottom: 20px;
+    align-content: center;
 }
