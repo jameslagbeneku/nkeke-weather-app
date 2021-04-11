@@ -255,10 +255,13 @@ body {
 
 .day {
     text-align: start;
+    justify-self: flex-start;
+    margin-right: 40px;
+
 }
 
 .min-temp {
-    margin-left: 40px;
+    /* margin-left: 40px; */
 }
 
 .next-7-box img {
