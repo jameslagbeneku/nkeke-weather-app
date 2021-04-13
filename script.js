@@ -7,13 +7,13 @@ const weatherType = document.querySelector(".weather-type")
 const weatherDesc = document.querySelector(".desc")
 const container = document.querySelector(".container")
 const forecast = document.querySelector(".forecast")
-const next48Box = document.querySelector(".next-48-box")
+const next24Box = document.querySelector(".next-24-box")
 const nextHour = document.querySelector(".hour")
 const nextTimeOfDay = document.querySelector(".time-of-day")
-const nextTemp = document.querySelector(".next-48hr-temp")
-const nextType = document.querySelector(".next-48hr-weather-type")
-const nextUnit = document.querySelector(".next-48hr-unit")
-const nextIcon = document.querySelector(".next-48hr-weather-icon")
+const nextTemp = document.querySelector(".next-24hr-temp")
+const nextType = document.querySelector(".next-24hr-weather-type")
+const nextUnit = document.querySelector(".next-24hr-unit")
+const nextIcon = document.querySelector(".next-24hr-weather-icon")
 const sevenDayForecast = document.querySelector(".seven-day-forecast")
 const nextSevenBox = document.querySelector(".next-7-box")
 const nextDay = document.querySelector(".day")
@@ -97,6 +97,7 @@ footerYear.innerHTML = y
         nextType.innerHTML = weatherArray[0][1].weather[0].main;
         newIcon = weatherArray[0][1].weather[0].icon;
         nextIcon.src = `https://openweathermap.org/img/wn/${newIcon}.png`;
+        nextUnit.innerHTML = "°F"
   
         weatherArray.forEach(output);
   
@@ -125,29 +126,28 @@ footerYear.innerHTML = y
           nextType.innerHTML = weatherArray[index][1].weather[0].main;
           newIcon = weatherArray[index][1].weather[0].icon;
           nextIcon.src = `https://openweathermap.org/img/wn/${newIcon}.png`;
+
+          if (countryCode !== "US") {
+            temp =  Math.ceil(((weatherArray[index][1].temp) - 273.15));
+            nextTemp.innerHTML = temp;
+            nextUnit.innerHTML = "°C";
+            console.log(nextUnit.innerHTML)
+          }
+
           const newForecast = document.createElement("div");
           forecast.appendChild(newForecast);
-          newForecast.classList.add("next-48-box")
+          newForecast.classList.add("next-24-box")
           newForecast.innerHTML = `
           <div class="time">
           <p class="hour">${nextHours}</p> <p class="time-of-day">${nextTimeOfDay.innerHTML}</p>
           </div>
-          <div class="next-48">
-              <p class="next-48hr-temp">${nextTemp.innerHTML}</p>
-              <p class="next-48hr-unit">°F</p>
+          <div class="next-24">
+              <p class="next-24hr-temp">${nextTemp.innerHTML}</p>
+              <p class="next-24hr-unit">°</p>
           </div>
-          <img class="next-48hr-weather-icon" src="${nextIcon.src}" alt="">
-          <p class="next-48hr-weather-type">${nextType.innerHTML}</p>
+          <img class="next-24hr-weather-icon" src="${nextIcon.src}" alt="">
+          <p class="next-24hr-weather-type">${nextType.innerHTML}</p>
           `
-         
-
-          
-        if (countryCode !== "US") {
-          temp =  Math.ceil(((weatherArray[0][1].temp) - 273.15));
-          nextTemp.innerHTML = temp;
-          nextUnit.innerHTML = "°C"
-          console.log(nextUnit.innerHTML)
-        }
         }
       });
     }
@@ -173,20 +173,26 @@ footerYear.innerHTML = y
           nextMaxTemp.innerHTML = Math.ceil(((sevenDayArray[index][1].temp.max) - 273.15) * 9/5 + 32);
           newIcon = sevenDayArray[index][1].weather[0].icon;
           nextDayIcon.src = `https://openweathermap.org/img/wn/${newIcon}.png`;
+
+          if (countryCode !== "US") {
+            nextMinTemp.innerHTML = Math.ceil(((sevenDayArray[index][1].temp.min) - 273.15));
+            nextMaxTemp.innerHTML = Math.ceil(((sevenDayArray[index][1].temp.max) - 273.15));
+
+            console.log(nextMinTemp.innerHTML)
+          }
+
           const newDay = document.createElement("div");
           sevenDayForecast.appendChild(newDay);
           newDay.classList.add("next-7-box")
+
+
           newDay.innerHTML = `
           <p class="day">${nextDay.innerHTML}</p>
           <p class="min-temp">${nextMinTemp.innerHTML} °</p>
           <p class="max-temp">${nextMaxTemp.innerHTML} °</p>
           <img class="next-seven-icon" src="${nextDayIcon.src}" alt="">
           `
-          if (countryCode !== "US") {
-                    nextMinTemp.innerHTML = Math.ceil(((sevenDayArray[index][1].temp.min) - 273.15));
-                    nextMaxTemp.innerHTML = Math.ceil(((sevenDayArray[index][1].temp.max) - 273.15));
-
-                  }
+          
         }
       
       });
