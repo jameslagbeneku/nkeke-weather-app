@@ -82,6 +82,52 @@ footerYear.innerHTML = y
       });
     }
 
+    let sevenDayWeather = function () {
+      fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&exclude=minutely,alerts&appid=${weatherAPIKey}`)
+      .then(response => response.json())
+      .then(sevenDayWeather => {
+        
+        const sevenDayArray = Object.entries(sevenDayWeather.daily)
+        sevenDayArray.shift()
+        nextDayIcon.src = `https://openweathermap.org/img/wn/${newIcon}.png`;
+  
+        sevenDayArray.forEach(output);
+  
+        function output(item, index){
+  
+          const milliseconds = sevenDayArray[index][1].dt;
+          var myDate = new Date(milliseconds*1000);
+          var dateSplit = myDate.toLocaleDateString(undefined, {weekday: 'long'}).split(" ")
+          nextDay.innerHTML = dateSplit[0]
+          nextMinTemp.innerHTML = Math.ceil(((sevenDayArray[index][1].temp.min) - 273.15) * 9/5 + 32);
+          nextMaxTemp.innerHTML = Math.ceil(((sevenDayArray[index][1].temp.max) - 273.15) * 9/5 + 32);
+          newIcon = sevenDayArray[index][1].weather[0].icon;
+          nextDayIcon.src = `https://openweathermap.org/img/wn/${newIcon}.png`;
+
+          if (countryCode !== "US") {
+            nextMinTemp.innerHTML = Math.ceil(((sevenDayArray[index][1].temp.min) - 273.15));
+            nextMaxTemp.innerHTML = Math.ceil(((sevenDayArray[index][1].temp.max) - 273.15));
+
+            console.log(nextMinTemp.innerHTML)
+          }
+
+          const newDay = document.createElement("div");
+          sevenDayForecast.appendChild(newDay);
+          newDay.classList.add("next-7-box")
+
+
+          newDay.innerHTML = `
+          <p class="day">${nextDay.innerHTML}</p>
+          <p class="min-temp">${nextMinTemp.innerHTML} °</p>
+          <p class="max-temp">${nextMaxTemp.innerHTML} °</p>
+          <img class="next-seven-icon" src="${nextDayIcon.src}" alt="">
+          `
+          
+        }
+      
+      });
+    }
+
     let twentyFourHourWeather = function () {
       fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&exclude=minutely,alerts&appid=${weatherAPIKey}`)
       .then(response => response.json())
@@ -152,51 +198,7 @@ footerYear.innerHTML = y
       });
     }
 
-    let sevenDayWeather = function () {
-      fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&exclude=minutely,alerts&appid=${weatherAPIKey}`)
-      .then(response => response.json())
-      .then(sevenDayWeather => {
-        
-        const sevenDayArray = Object.entries(sevenDayWeather.daily)
-        sevenDayArray.shift()
-        nextDayIcon.src = `https://openweathermap.org/img/wn/${newIcon}.png`;
-  
-        sevenDayArray.forEach(output);
-  
-        function output(item, index){
-  
-          const milliseconds = sevenDayArray[index][1].dt;
-          var myDate = new Date(milliseconds*1000);
-          var dateSplit = myDate.toLocaleDateString(undefined, {weekday: 'long'}).split(" ")
-          nextDay.innerHTML = dateSplit[0]
-          nextMinTemp.innerHTML = Math.ceil(((sevenDayArray[index][1].temp.min) - 273.15) * 9/5 + 32);
-          nextMaxTemp.innerHTML = Math.ceil(((sevenDayArray[index][1].temp.max) - 273.15) * 9/5 + 32);
-          newIcon = sevenDayArray[index][1].weather[0].icon;
-          nextDayIcon.src = `https://openweathermap.org/img/wn/${newIcon}.png`;
-
-          if (countryCode !== "US") {
-            nextMinTemp.innerHTML = Math.ceil(((sevenDayArray[index][1].temp.min) - 273.15));
-            nextMaxTemp.innerHTML = Math.ceil(((sevenDayArray[index][1].temp.max) - 273.15));
-
-            console.log(nextMinTemp.innerHTML)
-          }
-
-          const newDay = document.createElement("div");
-          sevenDayForecast.appendChild(newDay);
-          newDay.classList.add("next-7-box")
-
-
-          newDay.innerHTML = `
-          <p class="day">${nextDay.innerHTML}</p>
-          <p class="min-temp">${nextMinTemp.innerHTML} °</p>
-          <p class="max-temp">${nextMaxTemp.innerHTML} °</p>
-          <img class="next-seven-icon" src="${nextDayIcon.src}" alt="">
-          `
-          
-        }
-      
-      });
-    }
+    
   
     newWeather()
     twentyFourHourWeather()
